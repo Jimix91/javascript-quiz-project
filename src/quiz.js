@@ -1,7 +1,7 @@
 class Quiz {
     // YOUR CODE HERE:
     //
-    constructor(questions, timeLimit, timeRemaining){
+    constructor(questions, timeLimit, timeRemaining) {
         this.questions = questions
         this.timeLimit = timeLimit;
         this.timeRemaining = timeRemaining;
@@ -9,54 +9,51 @@ class Quiz {
         this.currentQuestionIndex = 0;
     }
 
-    getQuestion(){
+    getQuestion() {
         return this.questions[this.currentQuestionIndex];
     }
 
-    moveToNextQuestion(){
+    moveToNextQuestion() {
         return this.currentQuestionIndex++
     }
 
-    shuffleQuestions(){
+    shuffleQuestions() {
         for (let i = this.questions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
-    }
-    }
-    checkAnswer(answer){
-    const currentQuestion = this.getQuestion();
-
-    if (answer === currentQuestion.answer) {
-        this.correctAnswers++;
-        return true; 
-    }
-    else{
-        return false;
-     
-    }
-    
-    }
-    hasEnded(){
-         return this.currentQuestionIndex >= this.questions.length;
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
         }
-    
-    filterQuestionsByDifficulty(difficulty){
+    }
+    checkAnswer(answer) {
+        const currentQuestion = this.getQuestion();
+
+        if (answer === currentQuestion.answer) {
+            this.correctAnswers++;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    hasEnded() {
+        return this.currentQuestionIndex >= this.questions.length;
+    }
+
+    filterQuestionsByDifficulty(difficulty) {
         if (difficulty !== 1 && difficulty !== 2 && difficulty !== 3) {
-        return; 
+            return;
         }
 
-        this.questions = this.questions.filter(q=> q.difficulty === difficulty);
+        this.questions = this.questions.filter(q => q.difficulty === difficulty);
     }
-    averageDifficulty(){
-        const average = this.questions.reduce(function(acc, current){
+    averageDifficulty() {
+        const average = this.questions.reduce(function (acc, current) {
             return acc + current.difficulty
-        },0)
+        }, 0)
 
         return average / this.questions.length
     }
-
 }
 
-    
 
-    
+
+
